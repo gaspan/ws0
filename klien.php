@@ -1,6 +1,6 @@
 <?php
 
-$wsdl="http://localhost/latihan/ws0?wsdl";
+$wsdl="http://localhost:8080/latihan/ws0?wsdl";
 $client2 = new SoapClient ( $wsdl, array('cache_wsdl' => WSDL_CACHE_NONE, 'trace'=>1) );
 
 
@@ -44,7 +44,12 @@ $data=array('nama'=>'Iwan','npm'=>'45676','sks'=>9);
 echo '<p>';
 echo $client2->setMhs($data);
 echo '</p>';
-
+echo "sekarang tanggal ".date('d');
+echo "<br>";
+//  tugas kelompok 2
+$lahir = array('tgl' => '29', 'bln' => '05' , 'thn' =>'1995' );
+$return4 = $client2->setInfo($lahir);
+echo $return4;
 //echo '<br>'.'--------------------'.'<br>';
 //var_dump($client2->__getLastResponse());
 echo '<br>'.'--------------------'.'<br>';
