@@ -39,17 +39,61 @@ class MyWs{
 						
 		return $re;		
 	}
-	
-	function setMhs($data){
-		$nama=$data->nama;
-		$npm=$data->npm;
-		$sks=$data->sks;
+	 // tugas kelompok 2
+
+	function setInfo($lahir){
+		$tgl=$lahir->tgl;
+		$bln=$lahir->bln;
+		$thn=$lahir->thn;
+
+		$tanggal_today = date('d');
+
+
+		$bulan_today=date('m');
+
+
+		$tahun_today = date('Y');
+
+
+		$harilahir=gregoriantojd($bln,$tgl,$thn);
+
+		//menghitung jumlah hari sejak tahun 0 masehi
+
+
+		$hariini=gregoriantojd($bulan_today,$tanggal_today,$tahun_today);
+
+		//menghitung jumlah hari sejak tahun 0 masehi
+
+
+
+
+		$umur=$hariini-$harilahir;
+
+		//menghitung selisih hari antara tanggal sekarang dengan tanggal lahir
+
+
+		$tahun=$umur/365;//menghitung usia tahun
+
+
+		$sisa=$umur%365;//sisa pembagian dari tahun untuk menghitung bulan
+
+
+		$bulan=$sisa/30;//menghitung usia bulan
+
+
+		$hari=$sisa%30;//menghitung sisa hari
+
+		$umur_sekarang=floor($tahun);
+
+		if ($umur_sekarang > 20) {
+			return "umur anda mencukupi"
+		}else{
+			$x = 20 -$umur_sekarang;
+			return " tunggu $x tahun lagi";
+		}
+
 		
-		return 'selamat Anda telah terdaftar: '.$nama.' dan jml sks='.$sks;
 	}
-	
-}
-	
 //ini_set("soap.wsdl_cache_enabled", 0);
 
 $server = new SoapServer("brosur_0.wsdl");
